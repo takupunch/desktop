@@ -65,6 +65,8 @@ interface IDiffProps {
   /** Hiding whitespace in diff. */
   readonly hideWhitespaceInDiff: boolean
 
+  readonly askForConfirmationOnDiscardChanges?: boolean
+
   readonly onDiscardChanges?: (
     diff: ITextDiff,
     diffSelection: DiffSelection
@@ -236,6 +238,9 @@ export class Diff extends React.Component<IDiffProps, IDiffState> {
         onIncludeChanged={this.props.onIncludeChanged}
         onDiscardChanges={this.props.onDiscardChanges}
         diff={diff}
+        askForConfirmationOnDiscardChanges={
+          this.props.askForConfirmationOnDiscardChanges
+        }
       />
     )
   }

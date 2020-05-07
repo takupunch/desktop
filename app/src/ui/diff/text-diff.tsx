@@ -143,6 +143,7 @@ interface ITextDiffProps {
     diff: ITextDiff,
     diffSelection: DiffSelection
   ) => void
+  readonly askForConfirmationOnDiscardChanges?: boolean
 }
 
 const diffGutterName = 'diff-gutter'
@@ -612,7 +613,10 @@ export class TextDiff extends React.Component<ITextDiffProps, {}> {
       currentDiffLine = diffLineForIndex(this.props.diff.hunks, currentLine)
     }
 
-    return this.getDiscardLinesText(currentDiffLine, endDiffLine)
+    return (
+      this.getDiscardLinesText(currentDiffLine, endDiffLine) +
+      (this.props.askForConfirmationOnDiscardChanges ? '…' : '')
+    )
   }
 
   private getDiscardLinesText(
